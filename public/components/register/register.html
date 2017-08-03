@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+
+</head>
+<body>
+
+<div ng-controller="mainController as mainCtrl">
+    <label>Hello {{mainCtrl.username}}</label>
+    <div class="register-container" ng-controller="registerController as registerCtrl">
+        <div class="register-form">
+            <form name="registerForm" ng-submit="registerCtrl.register(registerForm.$valid)" novalidate>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text"
+                           ng-model="registerCtrl.user.username"
+                           ng-required="true"
+                           class="form-control"
+                           name="usernameInput"
+                           placeholder="Enter Username"
+                           ng-minlength="3"
+                           ng-maxlength="8"
+                           ng-pattern="/^[a-zA-Z]*$/">
+                    <!--<p ng-show="registerForm.usernameInput.$invalid && !registerForm.usernameInput.$pristine" class="help-block">username is required</p>-->
+                    <p ng-show="registerForm.usernameInput.$error.pattern && !registerForm.usernameInput.$pristine" class="help-block">only letters</p>
+                    <p ng-show="registerForm.usernameInput.$error.minlength && !registerForm.usernameInput.$pristine" class="help-block">username is too short</p>
+                    <p ng-show="registerForm.usernameInput.$error.maxlength && !registerForm.usernameInput.$pristine" class="help-block">username is too long</p>
+
+                </div>
+                <div class="form-group">
+                    <label>First name</label>
+                    <input type="text"
+                           ng-model="registerCtrl.user.FirstName"
+                           ng-required="true"
+                           class="form-control"
+                           name="firstNameInput"
+                           placeholder="Enter firstName"
+                           ng-pattern="/^[a-zA-Z]*$/">
+                    <p ng-show="registerForm.firstNameInput.$error.pattern && !registerForm.firstNameInput.$pristine" class="help-block">only letters</p>
+
+                </div>
+                <div class="form-group">
+                    <label>Last name</label>
+                    <input type="text"
+                           ng-model="registerCtrl.user.LastName"
+                           ng-required="true"
+                           class="form-control"
+                           name="lastNameInput"
+                           placeholder="Enter lastName"
+                           ng-pattern="/^[a-zA-Z]*$/">
+                    <p ng-show="registerForm.lastNameInput.$error.pattern && !registerForm.lastNameInput.$pristine" class="help-block">only letters</p>
+
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password"
+                           ng-model="registerCtrl.user.Password"
+                           ng-required="true"
+                           class="form-control"
+                           name="passwordInput"
+                           placeholder="Enter Password"
+                           ng-minlength="5"
+                           ng-maxlength="10"
+                           ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,10}$/">
+                    <p ng-show="registerForm.passwordInput.$error.pattern && !registerForm.passwordInput.$pristine" class="help-block">Password must contain at least one upper case letter, one lower case letter, and one numeric digit</p>
+                    <p ng-show="registerForm.passwordInput.$error.minlength && !registerForm.passwordInput.$pristine" class="help-block">Password is too short</p>
+                    <p ng-show="registerForm.passwordInput.$error.maxlength && !registerForm.passwordInput.$pristine" class="help-block">Password is too long</p>
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <input type="text"
+                           ng-model="registerCtrl.user.Adress"
+                           ng-required="true"
+                           class="form-control"
+                           name="addressInput"
+                           placeholder="Enter address">
+                    <!--<p ng-show="registerForm.addressInput.$invalid && !registerForm.addressInput.$pristine" class="help-block">address is required</p>-->
+                </div>
+                <div class="form-group">
+                    <label>City</label>
+                    <input type="text"
+                           ng-model="registerCtrl.user.City"
+                           ng-required="true"
+                           class="form-control"
+                           name="cityInput"
+                           placeholder="Enter city">
+                    <!--<p ng-show="registerForm.cityInput.$invalid && !registerForm.cityInput.$pristine" class="help-block">city is required</p>-->
+                </div>
+                <div class="form-group">
+                    <!--<label>Country</label>-->
+                    <!--<input type="text"-->
+                           <!--ng-model="registerCtrl.user.Country"-->
+                           <!--ng-required="true"-->
+                           <!--class="form-control"-->
+                           <!--name="countryInput"-->
+                           <!--placeholder="Enter country">-->
+                    <label>Country</label> <!--  need to do select from the xml contries-->
+                    <select ng-model="registerCtrl.user.Country" ng-options="country for country in countries">
+                        {{country}}
+                    </select>
+
+                    <!--<p ng-show="registerForm.countryInput.$invalid && !registerForm.countryInput.$pristine" class="help-block">country is required</p>-->
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="text"
+                           ng-model="registerCtrl.user.Phone"
+                           ng-required="true"
+                           class="form-control"
+                           name="phoneInput"
+                           placeholder="Enter phone"
+                           ng-minlength="9"
+                           ng-pattern="/^[0-9]*$/">
+                    <!--<p ng-show="registerForm.phoneInput.$invalid && !registerForm.phoneInput.$pristine" class="help-block">phone is required</p>-->
+                    <p ng-show="registerForm.phoneInput.$error.minlength && !registerForm.phoneInput.$pristine" class="help-block">phone is too short</p>
+                    <p ng-show="registerForm.phoneInput.$error.pattern && !registerForm.phoneInput.$pristine" class="help-block">only digits</p>
+
+                </div>
+                <div class="form-group">
+                    <label>Cellular</label>
+                    <input type="text"
+                           ng-model="registerCtrl.user.Cellular"
+                           ng-required="true"
+                           class="form-control"
+                           name="cellularInput"
+                           placeholder="Enter cellular"
+                           ng-minlength="10"
+                           ng-pattern="/^[0-9]*$/">
+                    <!--<p ng-show="registerForm.cellularInput.$invalid && !registerForm.cellularInput.$pristine" class="help-block">cellular is required</p>-->
+                    <p ng-show="registerForm.cellularInput.$error.minlength && !registerForm.cellularInput.$pristine" class="help-block">cellular is too short</p>
+                    <p ng-show="registerForm.cellularInput.$error.pattern && !registerForm.cellularInput.$pristine" class="help-block">only digits</p>
+
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email"
+                           ng-model="registerCtrl.user.Mail"
+                           ng-required="true"
+                           class="form-control"
+                           name="emailInput"
+                           placeholder="Enter email">
+                    <!--<p ng-show="registerForm.emailInput.$invalid && !registerForm.emailInput.$pristine" class="help-block">email is required</p>-->
+                </div>
+                <div class="form-group">
+                    <label>Credit card</label>
+                    <input type="text"
+                           ng-model="registerCtrl.user.CreditCardNumber"
+                           ng-required="true"
+                           class="form-control"
+                           name="creditCardInput"
+                           placeholder="Enter creditCard"
+                           ng-minlength="8"
+                           ng-pattern="/^[0-9]*$/">
+                    <p ng-show="registerForm.creditCardInput.$error.minlength && !registerForm.creditCardInput.$pristine" class="help-block">credit card is too short</p>
+                    <p ng-show="registerForm.creditCardInput.$error.pattern && !registerForm.creditCardInput.$pristine" class="help-block">only digits</p>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label>Favorite categories:</label>
+                    <div ng-controller="categoriesController as categoriesCtrl">
+                        <div ng-init="categoriesCtrl.getCategories()">
+                            <label ng-repeat="category in categoriesCtrl.categories"><br>
+                                <input
+                                        type="checkbox"
+                                        value="{{category.CategoryName}}"
+                                        ng-model="selectedCategory"
+                                        ng-change="registerCtrl.checkSelect(selectedCategory,category)">
+                                {{category.CategoryName}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="submit"
+                       class="btn btn-success btn-lg"
+                       value="register"
+                       ng-disabled="registerForm.$invalid">
+            </form>
+            <div>
+                {{registerCtrl.errorMessage}}
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-controller="mainController as mainCtrl">
+    <label>Hello {{mainCtrl.username}} </label>
+    <br/>
+    <label>{{mainCtrl.lastDate}} </label>
+    <div ng-controller="productsController as productsCtrl" ng-init="productsCtrl.getAllClothes()">
+        <div class= "productDiv">
+            <labe>Recommended:</labe>
+            <br>
+            <br>
+            <div ng-repeat="garment in productsCtrl.RecommendedClothes" class="productImg">
+                <img src="{{garment.PicturePath}}"/>
+                <br>
+                <label>{{garment.GarmentName}}</label>
+                <br>
+                <label>Price: {{garment.Price}}</label>
+                <br>
+            </div>
+        </div>
+
+        <div class="productDiv">
+            <label>Search by category: </label>
+            <select ng-options="category.CategoryName for category in productsCtrl.categories" ng-model="selected" ng-change="productsCtrl.getClothesByCategory(selected.CategoryID)" ></select>
+            <br>
+            <br>
+            <div ng-repeat="garment in productsCtrl.ClothesByCategory" class="productImg">
+                <img src="{{garment.PicturePath}}" />
+                <br>
+                <label>{{garment.GarmentName}}</label>
+                <br>
+                <label>Price: {{garment.Price}}</label>
+                <br>
+            </div>
+        </div>
+
+        <div class="productDiv">
+            <a href="" ng-click="productsCtrl.changeSortBy('GarmentName')">Name</a>
+            <a href="" ng-click="productsCtrl.changeSortBy('InsertDate')">Insert Date</a>
+            <a href="" ng-click="productsCtrl.changeSortBy('Price')">Price</a>
+            <a href="" ng-click="productsCtrl.changeSortBy('StokAmount')">Amount</a>
+            <br>
+            <div ng-repeat="garment in productsCtrl.Clothes|orderBy:productsCtrl.sortBy" class="productImg">
+                <img src="{{garment.PicturePath}}"   />
+                <label>{{garment.GarmentName}}   </label>
+                <label>Price: {{garment.Price}}</label>
+                <br>
+            </div>
+        </div>
+        <label>Search by: </label>
+        <select ng-options="option for option in productsCtrl.options" ng-model="selectedSearch"></select>
+
+        <div ng-show="selectedSearch=='Name'" class="productDiv">
+            <label>Clothes Name:</label>
+            <input type="text" data-ng-model="nameText" />
+            <div ng-repeat="garment in productsCtrl.Clothes | filter:nameText | orderBy:'GarmentName'" class="productImg">
+                <img src="{{garment.PicturePath}}" />
+                <button type="button" ng-click="productsCtrl.openModalDialog(garment)"class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Details</button>
+                <button type="button" ng-click="productsCtrl.addToCart(garment)">Add To Cart</button>
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">{{productsCtrl.header}}</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>{{productsCtrl.text}}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </button>
+                <br>
+                <label>{{garment.GarmentName}}   </label>
+                <label>Price: {{garment.Price}}</label>
+                <br>
+            </div>
+        </div>
+        <div ng-show="selectedSearch=='Price'" class="productDiv">
+            <label>Clothes Price:</label>
+            <input type="number" data-ng-model="numberPrice" />
+            <div ng-repeat="garment in productsCtrl.Clothes | filter:numberPrice | orderBy:'Price'" class="productImg">
+                <img src="{{garment.PicturePath}}" />
+                <button type="button" ng-click="productsCtrl.openModalDialog(garment)"class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2">Open Details</button>
+                <button type="button" ng-click="productsCtrl.addToCart(garment)">Add To Cart</button>
+                <div class="modal fade" id="myModal2" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">{{productsCtrl.header}}</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>{{productsCtrl.text}}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </button>
+                <br>
+                <label>{{garment.GarmentName}}   </label>
+                <label>Price: {{garment.Price}}</label>
+                <br>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+</body>
+</html>

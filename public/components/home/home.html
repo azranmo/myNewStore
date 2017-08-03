@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-controller="mainController as mainCtrl">
+    <label>Hello {{mainCtrl.username}}</label>
+    <br/>
+    <label> {{mainCtrl.lastDate}} </label>
+
+    <div ng-controller="homeController as homeCtrl" ng-init="homeCtrl.getAllClothes()">
+        <div>
+            <div class="left">
+                <h1>Top 5 Hot Clothes:</h1>
+                <div ng-repeat="garment in homeCtrl.Top5HotClothes" class="productImg">
+                    <img src="{{garment.PicturePath}}"/>
+                    <br>
+                    <label>{{garment.GarmentName}}</label>
+                    <br>
+                    <label>Price: {{garment.Price}}</label>
+                    <br>
+                </div>
+
+            </div>
+
+            <div ng-show="mainCtrl.userService.isLoggedIn" class="right">
+                <h1>new Clothes:</h1>
+                <div ng-repeat="garment in homeCtrl.NewClothes" class="productImg">
+                    <img src="{{garment.PicturePath}}"/>
+                    <br>
+                    <label>{{garment.GarmentName}}</label>
+                    <br>
+                    <label>Price: {{garment.Price}}</label>
+                    <br>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

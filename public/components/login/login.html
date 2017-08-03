@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+
+</head>
+<body>
+
+    <div ng-controller="mainController as mainCtrl">
+        <label>Hello {{mainCtrl.username}}</label>
+        <br>
+        <div ng-controller="loginController as loginCtrl">
+            <div class="login-form">
+                <form name="loginForm" ng-submit="loginCtrl.login(loginForm.$valid)" novalidate>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text"
+                               ng-model="loginCtrl.user.username"
+                               ng-required="true"
+                               class="form-control"
+                               name="usernameInput"
+                               placeholder="Enter Username"
+                               ng-minlength="3"
+                               ng-maxlength="8"
+                               ng-pattern="/^[a-zA-Z]*$/">
+                        <p ng-show="loginForm.usernameInput.$error.pattern && !loginForm.usernameInput.$pristine" class="help-block">only letters</p>
+                        <p ng-show="loginForm.usernameInput.$error.minlength && !loginForm.usernameInput.$pristine" class="help-block">username is too short</p>
+                        <p ng-show="loginForm.usernameInput.$error.maxlength && !loginForm.usernameInput.$pristine" class="help-block">username is too short</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password"
+                               ng-model="loginCtrl.user.password"
+                               ng-required="true"
+                               class="form-control"
+                               name="passwordInput"
+                               placeholder="Enter Password"
+                               ng-minlength="5"
+                               ng-maxlength="10"
+                               ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,10}$/">
+                        <p ng-show="loginForm.passwordInput.$error.pattern && !loginForm.passwordInput.$pristine" class="help-block">Password must contain at least one upper case letter, one lower case letter, and one numeric digit</p>
+                        <p ng-show="loginForm.passwordInput.$error.minlength && !loginForm.passwordInput.$pristine" class="help-block">Password is too short</p>
+                        <p ng-show="loginForm.passwordInput.$error.maxlength && !loginForm.passwordInput.$pristine" class="help-block">Password is too long</p>
+                    </div>
+
+                    <input type="submit"
+                           class="btn btn-success btn-lg"
+                           value="Login"
+                           ng-disabled="loginForm.$invalid">
+                </form>
+
+                <div>
+                    {{loginCtrl.errorMessage}}
+                </div>
+
+                <form name="restoreForm" ng-submit="loginCtrl.restore(restoreForm.$valid)" novalidate>
+
+                    <br/>
+                    <br/>
+                    <a href="" ng-click="loginCtrl.changeIsRestore()">forget your password?</a>
+                    </span>
+                    <div ng-show="loginCtrl.isRestore">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text"
+                                   ng-model="loginCtrl.userRestore.username"
+                                   ng-required="true"
+                                   class="form-control"
+                                   name="usernameInput"
+                                   placeholder="Enter Username"
+                                   ng-minlength="3"
+                                   ng-maxlength="8">
+                            <!--<p ng-show="loginForm.usernameInput.$invalid && !loginForm.usernameInput.$pristine" class="help-block">username is required</p>-->
+                            <p ng-show="loginForm.usernameInput.$error.minlength && !loginForm.usernameInput.$pristine" class="help-block">username is too short</p>
+                            <p ng-show="loginForm.usernameInput.$error.maxlength && !loginForm.usernameInput.$pristine" class="help-block">username is too short</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email"
+                                   ng-model="loginCtrl.userRestore.Mail"
+                                   ng-required="true"
+                                   class="form-control"
+                                   name="emailInput"
+                                   placeholder="Enter email">
+                            <!--<p ng-show="registerForm.emailInput.$invalid && !registerForm.emailInput.$pristine" class="help-block">email is required</p>-->
+                        </div>
+                        <div class="form-group">
+                            <label>City</label>
+                            <input type="text"
+                                   ng-model="loginCtrl.userRestore.City"
+                                   ng-required="true"
+                                   class="form-control"
+                                   name="cityInput"
+                                   placeholder="Enter city">
+                            <!--<p ng-show="registerForm.cityInput.$invalid && !registerForm.cityInput.$pristine" class="help-block">city is required</p>-->
+                        </div>
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input type="text"
+                                   ng-model="loginCtrl.userRestore.Country"
+                                   ng-required="true"
+                                   class="form-control"
+                                   name="countryInput"
+                                   placeholder="Enter country">
+                            <!--<p ng-show="registerForm.countryInput.$invalid && !registerForm.countryInput.$pristine" class="help-block">country is required</p>-->
+                        </div>
+                        <div class="form-group">
+                            <label>Cellular</label>
+                            <input type="text"
+                                   ng-model="loginCtrl.userRestore.Cellular"
+                                   ng-required="true"
+                                   class="form-control"
+                                   name="cellularInput"
+                                   placeholder="Enter cellular"
+                                   ng-minlength="10"
+                                   ng-pattern="/^[0-9]*$/">
+                            <!--<p ng-show="registerForm.cellularInput.$invalid && !registerForm.cellularInput.$pristine" class="help-block">cellular is required</p>-->
+                            <p ng-show="registerForm.cellularInput.$error.minlength && !registerForm.cellularInput.$pristine" class="help-block">cellular is too short</p>
+                            <p ng-show="registerForm.cellularInput.$error.pattern && !registerForm.cellularInput.$pristine" class="help-block">only digits</p>
+
+                        </div>
+
+                        <input type="submit"
+                               class="btn btn-successRestores btn-lg"
+                               value="Restore"
+                               ng-disabled="restoreForm.$invalid">
+                    </div>
+                </form>
+
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

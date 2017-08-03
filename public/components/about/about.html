@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div ng-controller="mainController as mainCtrl">
+        <div id="About">
+            <button type="button" ng-click="mainCtrl.openModalDialog()"class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Details</button>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"></button>
+                        <h4 class="modal-title">Moran Azran & Tal Shkolnik</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>We had few difficulties:</p>
+                        <p>1. Understanding the requirments.</p>
+                        <p>2. Handling the promise requests.</p>
+                        <p>3. Handling the properties in Angular.</p>
+                        <p>About us:.</p>
+                        <p>We are Information Systems Engeneers, third year students.</p>
+                        <p>A link to our pacman game: http://pacmanmoranandtal.000webhostapp.com</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+    </div>
+</body>
+</html>

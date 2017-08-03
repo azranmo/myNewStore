@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>My Page</title>
+    <script src="scripts/angular.js"></script>
+    <script src="app.js"></script>
+    <script type="text/javascript" src="scripts/angular-route.js"></script>
+    <script type="text/javascript" src="scripts/angular-local-storage.min.js"></script>
+    <script type="text/javascript" src="Category.js"></script>
+    <script type="text/javascript" src="Garment.js"></script>
+    <script type="text/javascript" src="Order.js"></script>
+    <script type="text/javascript" src="StorageController.js"></script>
+    <link rel="stylesheet" href="assets/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<div ng-controller="mainController as mainCtrl">
+        <ul>
+            <li><a href="#/">Home</a></li>
+            <li><span ng-hide="mainCtrl.userService.isLoggedIn"><a href="#/login">Login</a></span></li>
+            <li><span ng-hide="mainCtrl.userService.isLoggedIn"><a href="#/register">Register</a></span></li>
+            <li><span ng-show="mainCtrl.userService.isLoggedIn"><a href="#/products">Products</a></span></li>
+            <li><a href="#/about">About</a></li>
+            <li><span ng-show="mainCtrl.userService.isLoggedIn"><a href="#/cart">Cart</a></span></li>
+            <li id="logOut"><a href="" ng-click="mainCtrl.logOut()">Log Out</a></li>
+        </ul>
+
+</div>
+<br>
+<ng-view></ng-view>
+
+</body>
+</html>
